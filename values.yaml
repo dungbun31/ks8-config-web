@@ -41,7 +41,7 @@ securityContext: {}
   # runAsUser: 1000
 
 service:
-  ttype: NodePort
+  type: NodePort
   nodePort: 30001
   port: 8888
 
