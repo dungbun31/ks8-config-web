@@ -31,8 +31,8 @@ securityContext: {}
   # runAsUser: 1000
 
 service:
-  type: NodePort
-  nodePort: 30001
+  type: "NodePort"
+  nodePort: 30011
   port: 8888
 
 ingress:
@@ -101,4 +101,4 @@ affinity:
         - key: "kubernetes.io/hostname"
           operator: "In"
           values:
-          - "k8s-worker1.local"  # Replace with the actual node name
+          - "k8s-worker1.local"
