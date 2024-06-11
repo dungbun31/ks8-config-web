@@ -15,22 +15,16 @@ image:
 service:
   type: NodePort
   port: 80
-  nodePort: 30011
+  nodePort: 8888
+
+nginxService:
+  type: NodePort
+  port: 80
+  nodePort: 8888
 
 serviceAccount:
   create: true
   name: ""
-
-ingress:
-  enabled: false
-  className: ""
-  annotations: {}
-  hosts:
-    - host: chart-example.local
-      paths:
-        - path: /
-          pathType: ImplementationSpecific
-  tls: []
 
 resources: {}
   # limits:
