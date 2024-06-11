@@ -2,7 +2,7 @@ replicaCount: 1
 
 image:
   registry: docker.io
-  repository: dungxbuns/vdt-lab-backend
+  repository: dungxbuns/vdt-lab-frontend
   pullPolicy: IfNotPresent
   tag: "v7"
 
@@ -25,8 +25,8 @@ securityContext: {}
 
 service:
   type: NodePort
-  nodePort: 30002
-  port: 6868
+  nodePort: 30001
+  port: 8888
 
 ingress:
   enabled: false
@@ -44,12 +44,11 @@ resources: {}
 livenessProbe:
   httpGet:
     path: /
-    port: 6868
-
+    port: 8888
 readinessProbe:
   httpGet:
     path: /
-    port: 6868
+    port: 8888
 
 autoscaling:
   enabled: false
@@ -62,7 +61,10 @@ volumeMounts: []
 
 nodeSelector: {}
 
-tolerations: []
+tolerations:
+  - key: "node-role.kubernetes.io/control-plane"
+    operator: "Exists"
+    effect: "NoSchedule"
 
 affinity:
   nodeAffinity:
