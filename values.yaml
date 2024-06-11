@@ -13,9 +13,8 @@ image:
     tag: "latest"
 
 service:
-  type: NodePort
-  port: 80
-  nodePort: 8888
+  type: ClusterIP
+  port: 3000
 
 nginxService:
   type: NodePort
