@@ -2,7 +2,7 @@ replicaCount: 1
 
 image:
   registry: docker.io
-  repository: dungxbuns/vdt-lab-frontend
+  repository: dungxbuns/vdt-lab-backend
   pullPolicy: IfNotPresent
   tag: "v7"
 
@@ -32,8 +32,8 @@ securityContext: {}
 
 service:
   type: "NodePort"
-  nodePort: 30011
-  port: 8888
+  nodePort: 30012
+  port: 6868
 
 ingress:
   enabled: false
@@ -86,3 +86,39 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+
+secrets:
+  name: api-secrets
+  type: Opaque
+  data:
+    DB_USER: cG9zdGdyZXM=
+    DB_PASS: YnVu
+    DB_NAME: c3R1ZGVudHM=
+    DB_HOST: ZGI=
+    DB_PORT: NTQzMg==
+
+postgresql:
+  enabled: true
+  image:
+    registry: docker.io
+    repository: postgres
+    tag: latest
+  service:
+    port: 5432
+  resources: {}
+  env:
+    - name: POSTGRES_USER
+      valueFrom:
+        secretKeyRef:
+          name: api-secrets
+          key: DB_USER
+    - name: POSTGRES_PASSWORD
+      valueFrom:
+        secretKeyRef:
+          name: api-secrets
+          key: DB_PASS
+    - name: POSTGRES_DB
+      valueFrom:
+        secretKeyRef:
+          name: api-secrets
+          key: DB_NAME
