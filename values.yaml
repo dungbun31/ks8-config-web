@@ -81,20 +81,11 @@ volumeMounts: []
 #   mountPath: "/etc/foo"
 #   readOnly: true
 
-nodeSelector:
-  app: frontend
+nodeSelector: {}
 
 tolerations:
   - key: "node-role.kubernetes.io/control-plane"
     operator: "Exists"
     effect: "NoSchedule"
 
-affinity:
-  nodeAffinity:
-    requiredDuringSchedulingIgnoredDuringExecution:
-      nodeSelectorTerms:
-      - matchExpressions:
-        - key: "kubernetes.io/hostname"
-          operator: "In"
-          values:
-          - "k8s-worker1.local"
+affinity: {}
