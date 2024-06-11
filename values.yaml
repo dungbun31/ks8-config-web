@@ -17,16 +17,9 @@ service:
   port: 80
   nodePort: 30011
 
-ingress:
-  enabled: false
-  className: ""
-  annotations: {}
-  hosts:
-    - host: chart-example.local
-      paths:
-        - path: /
-          pathType: ImplementationSpecific
-  tls: []
+serviceAccount:
+  create: true
+  name: ""
 
 resources: {}
   # limits:
